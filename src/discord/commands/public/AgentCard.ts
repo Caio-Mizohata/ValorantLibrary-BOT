@@ -15,7 +15,7 @@ interface AgentCard {
 }
 
 createCommand({
-    name: "agentCard",
+    name: "Agent",
     description: "Mostra um agente específico do Valorant",
     type: ApplicationCommandType.ChatInput,
     options: [
