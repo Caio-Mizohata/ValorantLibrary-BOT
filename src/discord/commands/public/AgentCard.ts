@@ -1,8 +1,10 @@
 import { createCommand } from "#base";
-import axios from "axios";
+import { getApiData } from "#functions";
 import { ApplicationCommandOptionType, ApplicationCommandType } from "discord.js";
 
-const ApiValorant = "https://valorant-api.com/v1/agents?isPlayableCharacter=true";
+export enum AgentCardCommands {
+    Agent = "agent",
+}
 
 interface AgentCard {
     displayName: string;
@@ -15,7 +17,7 @@ interface AgentCard {
 }
 
 createCommand({
-    name: "Agent",
+    name: AgentCardCommands.Agent,
     description: "Mostra um agente específico do Valorant",
     type: ApplicationCommandType.ChatInput,
     options: [
@@ -28,14 +30,12 @@ createCommand({
     ],
     async run(interaction) {
         const { options } = interaction;
-        const agentName = options.getString("nome_agente", true);
+        const agentName = options.getString("nome_agente", true).toLocaleLowerCase();
         await interaction.deferReply();
 
         try {
-            const response = await axios.get(ApiValorant);
-            const agents: AgentCard[] = response.data.data;
-
-            const agent = agents.find(a => a.displayName.toLocaleLowerCase() === agentName.toLocaleLowerCase());
+            const agents = await getApiData() as AgentCard[];
+            const agent = agents.find(a => a.displayName.toLocaleLowerCase() === agentName);
 
             if (!agent) {
                 await interaction.editReply(`Agente "${agentName}" não encontrado. Por favor, verifique o nome e tente novamente.`);

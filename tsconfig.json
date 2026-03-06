@@ -13,7 +13,7 @@
 				"./src/discord/index.ts"
 			],
 			"#functions": [
-				"./src/functions/index.ts"
+				"./src/functions/ValorantAPI.ts"
 			],
 			"#database": [
 				"./src/database/index.ts"

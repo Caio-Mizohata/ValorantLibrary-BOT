@@ -1,8 +1,10 @@
 import { createCommand } from "#base";
-import axios from "axios";
+import { getApiData } from "#functions";
 import { ApplicationCommandOptionType, ApplicationCommandType } from "discord.js";
 
-const ApiValorant = "https://valorant-api.com/v1/agents?isPlayableCharacter=true";
+export enum AgentSkillsCommands {
+    AgentSkills = "agentSkills",
+}
 
 interface AgentStatistics {
     displayName: string;
@@ -22,7 +24,7 @@ interface AgentStatistics {
 }
 
 createCommand({
-    name: "agentSkills",
+    name: AgentSkillsCommands.AgentSkills,
     description: "Mostra as habilidades de um agente específico do Valorant",
     type: ApplicationCommandType.ChatInput,
     options: [
@@ -35,14 +37,12 @@ createCommand({
     ],
     async run(interaction) {
         const { options } = interaction;
-        const agentName = options.getString("nome_agente", true);
+        const agentName = options.getString("nome_agente", true).toLocaleLowerCase();
         await interaction.deferReply();
 
         try {
-            const response = await axios.get(ApiValorant);
-            const agents: AgentStatistics[] = response.data.data;
-
-            const agent = agents.find(a => a.displayName.toLocaleLowerCase() === agentName.toLocaleLowerCase());
+            const agents = await getApiData() as AgentStatistics[];
+            const agent = agents.find(a => a.displayName.toLocaleLowerCase() === agentName);
 
             if (!agent) {
                 await interaction.editReply(`Agente "${agentName}" não encontrado. Por favor, verifique o nome e tente novamente.`);
@@ -63,9 +63,7 @@ createCommand({
 
                 return {
                     name: `🔹 ${ability.displayName}${key}`, 
-                    
                     value: `> ${ability.description}\n\u200b`, 
-                    
                     inline: false 
                 };
             });
@@ -85,7 +83,6 @@ createCommand({
             console.error("Error fetching agent information:", error);
             await interaction.editReply("Ocorreu um erro ao buscar informações do agente. Por favor, tente novamente.");
         }
-        
     },   
 })
    
