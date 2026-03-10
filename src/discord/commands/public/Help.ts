@@ -2,6 +2,7 @@ import { createCommand } from "#base";
 import { ApplicationCommandType } from "discord.js";
 import { AgentCardCommands } from "./AgentCard";
 import { AgentSkillsCommands } from "./AgentStatistics";
+import { BuddiesCommands } from "./Buddies";
 
 createCommand({
     name: "help",
@@ -20,6 +21,11 @@ createCommand({
                     description: "Mostra as habilidades de um agente específico do Valorant",
                     usage: "/agentSkills nome_agente"
                 },
+                {
+                    name: BuddiesCommands.Buddies,
+                    description: "Mostra os buddies disponíveis no Valorant",
+                    usage: "/buddies nome_buddy"
+                }
             ];
 
             const commandFields = commandsList.map(cmd => ({
