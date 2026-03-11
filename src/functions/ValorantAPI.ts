@@ -3,6 +3,7 @@ import { AxiosResponse } from "axios";
 
 const API_VALORANT: string = "https://valorant-api.com/v1/agents?isPlayableCharacter=true";
 const API_BUDDIES: string = "https://valorant-api.com/v1/buddies";
+const API_WEAPONS: string = "https://valorant-api.com/v1/weapons";
 
 export async function getApiData(): Promise<unknown> {
     try {
@@ -44,3 +45,23 @@ export async function getBuddiesData(): Promise<unknown> {
     }
 }
 
+export async function getWeaponsData(): Promise<unknown> {
+    try {
+        const response: AxiosResponse = await axios.get(API_WEAPONS);
+
+        if (response.status !== 200) {
+            return Promise.reject(new Error(`API request failed with status code ${response.status}`));
+        }
+
+        const weaponsData: unknown = response.data?.data;
+
+        if (typeof weaponsData !== "object" || weaponsData === null) {
+            return Promise.reject(new Error("Unexpected API response format: 'data' property is not an object"));
+        }
+
+        return weaponsData;
+    } catch (error) {
+        console.error("Failed to fetch weapons data:", error);
+        throw new Error("Failed to fetch weapons data from API.");
+    }
+}

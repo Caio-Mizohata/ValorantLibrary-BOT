@@ -3,6 +3,7 @@ import { ApplicationCommandType } from "discord.js";
 import { AgentCardCommands } from "./AgentCard";
 import { AgentSkillsCommands } from "./AgentStatistics";
 import { BuddiesCommands } from "./Buddies";
+import { WeaponsCommands } from "./Weapons";
 
 createCommand({
     name: "help",
@@ -25,6 +26,11 @@ createCommand({
                     name: BuddiesCommands.Buddies,
                     description: "Mostra os buddies disponíveis no Valorant",
                     usage: "/buddies nome_buddy"
+                },
+                {
+                    name: WeaponsCommands.Weapons,
+                    description: "Mostra as armas disponíveis no Valorant",
+                    usage: "/weapons nome_arma"
                 }
             ];
 
