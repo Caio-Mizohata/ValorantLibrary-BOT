@@ -7,7 +7,7 @@
 ![Discord.js](https://img.shields.io/badge/discord.js-14.25-5865F2?style=for-the-badge&logo=discord&logoColor=white)
 ![Valorant](https://img.shields.io/badge/Valorant-API-FD4556?style=for-the-badge&logo=valorant&logoColor=white)
 
-Bot para Discord que fornece informações detalhadas sobre o universo de **Valorant** — agentes, habilidades, armas e buddies — diretamente no seu servidor.
+Um Bot simples para Discord que fornece informações detalhadas sobre o universo de **Valorant** — agentes, habilidades, armas e buddies — diretamente no seu servidor.
 
 </div>
 
