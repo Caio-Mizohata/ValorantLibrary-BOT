@@ -26,7 +26,7 @@ O **ValorantLibrary BOT** é um bot Discord desenvolvido em TypeScript que conso
 | [TypeScript](https://www.typescriptlang.org/) | Linguagem principal do projeto |
 | [Node.js](https://nodejs.org/) | Runtime JavaScript |
 | [discord.js](https://discord.js.org/) | Biblioteca para interação com a API do Discord |
-| [@constatic/base](https://github.com/rinckodev/constatic) | Framework de estrutura para bots Discord |
+| [Constatic](https://constatic-docs.vercel.app/pt) | Framework de estrutura para bots Discord |
 | [Axios](https://axios-http.com/) | Cliente HTTP para consumo de APIs |
 | [Zod](https://zod.dev/) | Validação de variáveis de ambiente |
 | [DisCloud](https://discloud.com/) | Plataforma de hospedagem do bot |
